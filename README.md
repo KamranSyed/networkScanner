@@ -1,3 +1,11 @@
+find_devices_on_wifi
+======================
+License: Apache 2.0 http://www.apache.org/licenses/LICENSE-2.0
+
+Forked from https://github.com/dmashuda/networkScanner
+
+By Kamran Syed https://github.com/KamranSyed
+
 networkScanner
 ==============
 

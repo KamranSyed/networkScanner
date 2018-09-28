@@ -1,4 +1,4 @@
-package com.unwind.networkmonitor;
+package com.kamransyed.find_devices_on_wifi;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

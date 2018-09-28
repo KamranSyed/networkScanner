@@ -1,4 +1,4 @@
-package com.unwind.netTools;
+package com.kamransyed.netTools;
 
 import android.util.Log;
 
@@ -28,6 +28,7 @@ public class DiscoverRunner implements Runnable {
         int timeout = 4000;
         for (int i = startAdd; i < startAdd + numAdds; i++) {
             String host = subnet + "." + i;
+            Log.i(TAG, "host: "+ host);
 
             try {
                 Process exec = Runtime.getRuntime().exec(String.format(CMD, host));

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Network Scanner</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="app_name">Find Devices on Wifi</string>
     <string name="action_settings">Nastavení</string>
     <string name="title_activity_display_device">DisplayDevice</string>
     <string name="scanning">Prohledávám</string>

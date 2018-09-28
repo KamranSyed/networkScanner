@@ -1,15 +1,14 @@
-package com.unwind.networkmonitor;
+package com.kamransyed.find_devices_on_wifi;
 
 import android.content.Context;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.ViewGroup;
 import android.view.View;
 import android.view.LayoutInflater;
 import android.widget.TextView;
 
-import com.unwind.netTools.model.Device;
+import com.kamransyed.netTools.model.Device;
 
-import java.net.InetAddress;
 import java.util.List;
 
 /**
@@ -84,9 +83,9 @@ public class NetDeviceAdapter extends RecyclerView.Adapter<NetDeviceAdapter.View
 
         public ViewHolder(View itemView) {
             super(itemView);
-            deviceName = (TextView) itemView.findViewById(R.id.deviceName);
-            deviceIp = (TextView) itemView.findViewById(R.id.deviceIp);
-            macAdd = (TextView)itemView.findViewById(R.id.macAdd);
+            deviceName = itemView.findViewById(R.id.deviceName);
+            deviceIp = itemView.findViewById(R.id.deviceIp);
+            macAdd = itemView.findViewById(R.id.macAdd);
         }
     }
 

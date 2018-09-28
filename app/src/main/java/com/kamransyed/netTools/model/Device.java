@@ -1,7 +1,4 @@
-package com.unwind.netTools.model;
-
-import android.os.Parcel;
-import android.os.Parcelable;
+package com.kamransyed.netTools.model;
 
 /**
  * Created by dan on 10/24/14.

@@ -1,7 +1,9 @@
-package com.unwind.netTools;
+package com.kamransyed.netTools;
 
 
-import com.unwind.netTools.model.Device;
+import android.util.Log;
+
+import com.kamransyed.netTools.model.Device;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -11,6 +13,8 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+
+import static android.content.ContentValues.TAG;
 
 
 public class Pinger {
@@ -60,6 +64,7 @@ public class Pinger {
         ArrayList<Device> foundDev = new ArrayList<Device>(resAddresses.size());
 
         for (InetAddress a: resAddresses){
+			Log.i(TAG, "foundDev: "+ a.getHostAddress());
             foundDev.add(new Device(a.getHostAddress(), getMacFromArpCache(a.getHostAddress()), a.getCanonicalHostName()));
         }
 

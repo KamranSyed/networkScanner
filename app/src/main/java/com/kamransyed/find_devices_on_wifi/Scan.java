@@ -1,18 +1,16 @@
-package com.unwind.networkmonitor;
+package com.kamransyed.find_devices_on_wifi;
 
-import android.app.ProgressDialog;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
-import android.support.v7.app.ActionBarActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.app.AppCompatDialog;
-import android.support.v7.internal.widget.AppCompatPopupWindow;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
+import androidx.appcompat.app.AppCompatDialog;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Display;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,17 +18,18 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 
-import com.unwind.netTools.Pinger;
-import com.unwind.netTools.model.Device;
+import com.kamransyed.netTools.Pinger;
+import com.kamransyed.netTools.model.Device;
 
-import org.apache.http.conn.util.InetAddressUtils;
-
+import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import static android.content.ContentValues.TAG;
 
 
 public class Scan extends AppCompatActivity {
@@ -44,7 +43,7 @@ public class Scan extends AppCompatActivity {
         setContentView(R.layout.activity_scan);
 
 
-        LinearLayout mainLayout = (LinearLayout) findViewById(R.id.mainView);
+        LinearLayout mainLayout =  findViewById(R.id.mainView);
 
 
         Display display = getWindowManager().getDefaultDisplay();
@@ -57,7 +56,7 @@ public class Scan extends AppCompatActivity {
 
         int numrows = (int) Math.floor(dpWidth / 300);
 
-        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.list);
+        RecyclerView recyclerView = findViewById(R.id.list);
 
         StaggeredGridLayoutManager manager = new StaggeredGridLayoutManager(numrows, StaggeredGridLayoutManager.VERTICAL);
         manager.setGapStrategy(StaggeredGridLayoutManager.GAP_HANDLING_MOVE_ITEMS_BETWEEN_SPANS);
@@ -171,6 +170,7 @@ public class Scan extends AppCompatActivity {
             super.onPostExecute(inetAddresses);
             adapter.setAddresses(inetAddresses);
             adapter.notifyDataSetChanged();
+            Log.i(TAG, "totalItems: "+ adapter.getItemCount());
             mDialog.cancel();
         }
 
@@ -183,14 +183,14 @@ public class Scan extends AppCompatActivity {
 
         public static String getLocalIpv4Address(){
             try {
-                String ipv4;
+                String ipv4="192.168.1.0";
                 List<NetworkInterface>  nilist = Collections.list(NetworkInterface.getNetworkInterfaces());
                 if(nilist.size() > 0){
                     for (NetworkInterface ni: nilist){
                         List<InetAddress>  ialist = Collections.list(ni.getInetAddresses());
                         if(ialist.size()>0){
                             for (InetAddress address: ialist){
-                                if (!address.isLoopbackAddress() && InetAddressUtils.isIPv4Address(ipv4=address.getHostAddress())){
+                                if(!address.isLoopbackAddress() && address instanceof Inet4Address) {
                                     return ipv4;
                                 }
                             }
